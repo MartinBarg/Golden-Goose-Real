@@ -1,0 +1,69 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+header {
+    /* background color */
+    background: #222222;
+    /* text color */
+    color: #ffffff;
+    / padding top and bottom of 20px - padding left and right of 30px
+    padding: 20px 30px;
+}
+
+header #main-navigation {
+    width: 49%;
+    display: inline-block;
+    text-align: right;
+}
+
+header #main-navigation ul {
+    /* The list-style CSS property is a shorthand for setting the individual values that define how a list is displayed: list-style-type, list-style-image, and list-style-position. */
+        /* none - No list style is used. */
+    list-style: none;
+    padding: 0;
+}
+
+header #main-navigation ul li {
+    /* The display CSS property defines the display type of an element */
+    display: inline-block; 
+}
+
+header #main-navigation ul li a {
+    color: white;
+    text-decoration: none; /* https://www.w3schools.com/cssref/pr_text_text-decoration.asp */
+    padding: 10px 15px;
+}
+
+header #main-navigation ul li a:hover {
+    background: #444;
+    border-radius: 3px;
+    /* The transition CSS property is a shorthand property for transition-property, transition-duration, transition-timing-function, and transition-delay. */
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/transition */
+    transition: 0.3s ease all;
+} 
+
+/* Contenedor del Hero */
+#hero {
+    width: 100%;
+    height: 100vh;
+    background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+    background-position: center; /* Centra la imagen */
+    animation: slideBackground 10s infinite; /* Animación para cambiar las imágenes */
+}
+
+/* Animación de deslizamiento del background */
+@keyframes slideBackground {
+    0% {
+        background-image: url('https://raw.githubusercontent.com/MartinBarg/Golden-Goose/images/images/Ball-Star2.jpg');
+    }
+    50% {
+        background-image: url('https://raw.githubusercontent.com/MartinBarg/Golden-Goose/images/images/GG3.avif');
+    }
+    100% {
+        background-image: url('https://raw.githubusercontent.com/MartinBarg/Golden-Goose/images/images/Ball-Star2.jpg');
+    }
+}
