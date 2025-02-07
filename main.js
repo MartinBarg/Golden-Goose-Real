@@ -249,7 +249,7 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
     })
         .then(response => response.text())
         .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error('Error:' + error));
     
 
  
