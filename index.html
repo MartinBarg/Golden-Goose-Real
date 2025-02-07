@@ -8,56 +8,86 @@
 </head>
 <body>
     <header>
-Header
         <nav id="main-navigation">
             <ul>
-                <li><a href="#hero"></a>Inicio</li>
-                <li><a href="#gift"></a>Gift</li>
-                <li><a href="#vision"></a>Vision</li>
-                <li><a href="#givers"></a>Givers</li>
-                <li><a href="#enjoy"></a>Enjoy</li>
+                <li><a href="#hero" data-section="header" data-value="hero">Inicio</a></li>
+                <li><a href="#gift" data-section="header" data-value="gift">Gift</a></li>
+                <li><a href="#vision" data-section="header" data-value="vision">Vision</a></li>
+                <li><a href="#givers" data-section="header" data-value="givers">Givers</a></li>
+                <li><a href="#enjoy" data-section="header" data-value="enjoy">Enjoy</a></li>
             </ul>
         </nav>
         <div id="lenguage">
-            <button id="lenguage-selector">Elegir idioma</button>
-            <ul>
-                <li>Castellano</li>
-                <li>San Juanino</li>
-                <li>English</li>
-                <li>Deutsch</li>
+            <button id="lenguage-selector" data-section="lenguage" data-value="button">Elegir idioma</button>
+            <ul id="lenguage-list" hidden>
+                <li class="lenguage-option" data-section="lenguage" data-value="spanish" data-lenguage="es">Castellano</li>
+                <li class="lenguage-option" data-section="lenguage" data-value="san juanino" data-lenguage="sj">San Juanino</li>
+                <li class="lenguage-option" data-section="lenguage" data-value="english" data-lenguage="en">Ingles</li>
+                <li class="lenguage-option" data-section="lenguage" data-value="deutch" data-lenguage="de">Aleman</li>
             </ul>
         </div>
     </header>
 
     <div id="hero">
-HERO
     </div>
 
     <div id="gift">
-Seccion Platita Regalo
-        
+        <div id="shoeProgress">
+            <h6 id="h6Progress"></h6>
+            <progress id="progressBar" value max="100"><span>Loading... please wait (or donate)</span></progress>
+        </div>
 <br>
     
-        <button id="gift-button">Transferir</button>
+        <button id="gift-button" href data-section="gift" data-value="button">Gift</button>
     </div>
 
     <div id="vision">
 El porque de martin de todo esto
 
         <br>
-        <p>Quien soy? Que quiero. Para que las quiero. Vision.
-            En que me van a ayudar en mi vida.
+        <p data-section="vision" data-value="paragraph">Hola familia, amigos. Si estan viendo este proyecto es porque me quieren y se los mostre porque yo los quiero mucho tambien.
+            
+            Lo principal de este proyecto es poder plasmar mis conocimientos de programación a modo de practica y hacerlos parte de manera interactiva. 
+            Para esto encontre una causa que me hiciera seguir por mas veces que fallara mi codigo. Y asi es como llegamos a lo que llamo "El proyecto Golden Goose".
+            Junte mi pasion por la moda (?) y mis ganas de aprender programacion para poder hacerlos parte y participe de este regalo. 
+            Van a poder colaborar, regalar, ver fechas especiales, disfrutar con migo del uso de las mismas con fotos que vaya poniendo en la pagina y todo tipo de sorpresas que vaya aprendiendo a incorporar en la pagina.
+            Gracias infinitas por acompañarme en mi camino de programador y de icono de la modaaa.
+            Los quiero.
+            
              </p>
     </div>
     
     <div id="givers">
-Donantes
+Givers
+        <br><button id="new-giver">I am a new giver</button>
+    
+        <section id='giver-form' hidden>
+            <label>Nombre:</label>
+            <input type="text" placeholder="Marto" id="name">
+            <br>
 
-        <div class="individual-giver">
-            <img>
-            <h5>Nombre de donante</h5>
-            <p>frase linda del donante para mi</p>
-        </div>
+            <label>Mail:</label>
+            <input type="email" id="email" required>
+            <br>
+
+            <label>Confirm mail:</label>
+            <input type="email" id="email-confirmation" required>
+            <br>
+
+            <label>My wish for martin:</label>
+            <textarea placeholder="Cositas lindas..." id="wish"></textarea>
+            <br>
+
+            <label>Amount gifted:</label>
+            <input type="number" placeholder="U$D:___" id="amount">
+            <br>
+
+            <label>Foto tuya sonriendo :) </label>
+            <input type="file" id="photo" accept="image/*" capture="user">
+            <br>
+
+            <button type="submit" id="submit-giver">Enviar</button>
+        </section>
 
     </div>
 
@@ -67,7 +97,12 @@ Martin Post regalo y todo lo que las esta disfrutando
     </div>
 
     <footer>
-Contactame, fijate lo cool que esta golden goose
+Fijate lo cool que esta golden goose
+        <a href="https://www.goldengoose.com/it/es" target="_blank" rel="nooper noreferrer" data-section="footer" data-value="GG-website">GG Website</a>
+        <a href="https://www.instagram.com/goldengoose/?hl=es" target="_blank" rel="nooper noreferrer" data-section="footer" data-value="GG-Instagram">GG Instagram</a>
+        <a href="https://www.goldengoose.com/es/es/stories/paris-event-2024.html" target="_blank" rel="nooper noreferrer" data-section="footer" data-value="Paris 2024">#Paris2024</a>
+    
+        <p data-section="footer" data-value="final-message">My dream, <span id='our-proyect' style='color: red'> our proyect</span></p>
     </footer>
 
     <script src="main.js"></script>

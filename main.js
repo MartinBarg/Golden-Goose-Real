@@ -1,44 +1,274 @@
-import express from 'express';
+// const express = require("express");
+//const emailHelper = require("./helpers/emailHelper");
 
-// Step 1: Create the Express app
-const appExpress = express();
 
-appExpress.use(express.json());
+// const nodemailer = require("nodemailer");
 
-const PORT = process.env.PORT || 3000;
-appExpress.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+// const userGmail = "martotester@gmail.com";
+// const passAppGmail = "loyz pyig snlg wquz";
+
+// // Set up Nodemailer transporter
+// const transporter = nodemailer.createTransport({
+// //   service: "gmail",
+// //   auth: {
+// //     user: userGmail,
+// //     pass: passAppGmail,
+// //   },
+// // });
+
+// // Define a route for sending emails
+// // Set up email options
+// const mailOptions = {
+//   from: userGmail,
+//   to: userGmail,
+//   subject: `Gracias por tu hermoso gesto!`,
+//   text: `Muchas gracias ${giverName} por tu regalo!! Me ayuda un monton a comprarme las zapas que quieroo.
+  
+//   Ahora que sos parte de este proyecto, vas a poder entrar cuando me las compre y ver fotos mias usandolas y disfrutando tu regalo.
+  
+//   En caso de que quieras modificar tu deseo, nombre, foto o contribucion al proyecto podes hacerlo buscandote en la sección de 'Givers', apretando el boton 'Edit' e ingresando tu codigo de modificacion: ${giverCode}.
+  
+//   Este mensaje fue enviado automaticamente, por lo que no te sientas en el compromiso de responderlo. Pero en caso de que lo hagas me voy a ocupar personalmente de leerlo (no te preocupes que no se lo muestro a la inteligencia artificial, va a ser nuestro secretito)`,
+// };
+
+// //     // Send email
+// // transporter.sendMail(mailOptions, (error, info) => {
+// //     if (error) {
+// //       console.log(error);
+// //     }
+// //     console.log("Email sent: " + info.response);
+//   });
+
+//boton de regalo te lleva a mercado pago
+var giftButton = document.querySelector('#gift-button');
+
+giftButton.addEventListener('click',()=>{
+    if(confirm('Aceptando este cartel te redirigire a mercado pago a que puedas transferir en pesos la cifra en dolares que regalas. Es a modo simbolico, pero me permitia jugar con metodos de pago en mi pagina.')){
+        window.location.href = 'https://link.mercadopago.com.ar/martoslinksinmonto??back_url=https://sparkling-llama-acce6c.netlify.app/'
+    }
 });
 
-import {MercadoPagoConfig, Payment} from 'mercadopago';
 
-const paymentReceiver = new MercadoPagoConfig({
-    accessToken: 'TEST-2516438873949673-122610-6d849769ed767820831129c422227c16-2177885509',
-    options: {
-        timeout: 5000, 
-        idempotencyKey: 'abc'
-    } 
+//lenguages
+
+var lenguageButton = document.querySelector('#lenguage-selector');
+var lenguageMenu = document.querySelector('#lenguage-list');
+var lenguageContainer = document.querySelector('#lenguage');
+
+lenguageButton.addEventListener('click', (eve)=>{
+    eve.stopPropagation();
+    lenguageMenu.hidden = !lenguageMenu.hidden;
 });
 
-const payment = new Payment(paymentReceiver);
+document.addEventListener('click', (ev)=>{
+    if(!lenguageContainer.contains(ev.target)){
+        lenguageMenu.hidden = true;
+    }
+});
 
-appExpress.post('/listener1GG', (req, res) => {
-    console.log('listener1GG: ' + req.body);
+var lengButtons = document.querySelectorAll('[data-lenguage]');
+var textsToChange = document.querySelectorAll('[data-value]');
+
+lengButtons.forEach((button)=>{
+    button.addEventListener('click', ()=>{
+        fetch(`../languages/${button.dataset.lenguage}.json`)
+            .then(response => response.json())
+            .then(data => {
+                textsToChange.forEach((text)=>{
+                    const section = text.dataset.section;   
+                    const value = text.dataset.value;
+
+                    text.innerHTML = data[section][value];
+                })
+            })
+    })
+})
+
+//Total de la zapatilla
+shoeCost = 875
+
+//CARGO PROGRESO DE LA ZAPATILLA
+
+if (localStorage.getItem('shoeProgressAbsolute') === null){
+    shoeProgressAbsolute = 0
+} else{
+    shoeProgressAbsolute = Number(localStorage.getItem('shoeProgressAbsolute'))
+}
+
+if (localStorage.getItem('shoeProgressRelative') === null){
+    shoeProgressRelative = 0;
+    document.querySelector('#progressBar').value = shoeProgressRelative
+} else{
+    shoeProgressRelative = Number(localStorage.getItem('shoeProgressRelative'));
+    document.querySelector('#progressBar').value = shoeProgressRelative
+}
+//NEW GIVER
+var givers = document.querySelector('#givers');
+
+function newIndividualGiver(){
+individualGiver = document.createElement('div');
+individualGiver.classList.add('individual-giver');
+givers.appendChild(individualGiver);
+
+individualGiverName = document.createElement('h5');
+individualGiver.appendChild(individualGiverName);
+individualGiverName.textContent = document.querySelector('#name').value;
+
+individualGiverWish = document.createElement('p');
+individualGiver.appendChild(individualGiverWish);
+individualGiverWish.textContent = document.querySelector('#wish').value;
+
+individualGiverPhoto = document.createElement('img');
+individualGiver.appendChild(individualGiverPhoto);
+
+individualGiverAmount = Number(document.querySelector("#amount").value);
+
+individualGiverEmail = document.querySelector("#email").value;
+
+editGiver = document.createElement('button');
+individualGiver.appendChild(editGiver);
+editGiver.textContent = 'Edit Giver';
+editGiver.classList.add('Edit');
+
+deleteGiver = document.createElement('button');
+individualGiver.appendChild(deleteGiver);
+deleteGiver.textContent = 'Delete Giver';
+deleteGiver.classList.add('Delete')
+
+};
+
+//mostrar los datos a llenar al clickear new giver
+document.querySelector('#new-giver').addEventListener('click', (s)=>{
+    if(s.target == document.querySelector('#new-giver')){document.querySelector('#giver-form').hidden = false}
+})
+
+
+//mostrar en pantalla los givers que existen en el local storage
+if(localStorage.getItem('giversArray') === null){
+    giversArray = []
+} else {
+    giversArray = JSON.parse(localStorage.getItem('giversArray'));
+    giversArray.forEach(g =>{
+        newIndividualGiver();
+        individualGiverName.textContent = g.giverName;
+        individualGiverWish.textContent = g.giverWish;
+        individualGiverPhoto.src = g.giverPhoto;
+    })
+};
+
+//el giver apreta enviar en el formulario de new giver
+document.querySelector('#submit-giver').addEventListener('click', ()=>{
     
-    const paymentID = req.body.data.id;
+    //genero todos los elementos para mostrar
+    newIndividualGiver();
 
-    payment.get(paymentID)
-        .then((response)=>{
-        amountGifted = response.body.transaction_amount;
-        console.log(`Payment details ${response}`);
-        console.log(`Transaction amount ${amountGifted}`);
-        res.sendStatus(200);
-        })  
+    //genero numero random
+    randomCode = Math.floor(Math.random()*1000000).toString().padStart(6, '0');
 
-        .catch((error) => {
-            console.log(`Error getting payment details of transaction ID ${paymentID}`)
-            res.sendStatus(500);
+
+
+    var fileInput = document.querySelector('#photo');
+
+    //si cargó foto
+    if(fileInput.files.length > 0){
+
+    //guardo la foto como URL y no como archivo
+    var reader = new FileReader();
+    var file = fileInput.files[0];
+
+    if(file){
+        reader.readAsDataURL(file);
+        individualGiverPhoto.alt = "Fotito muy linda que subiste, pero la compu no cargo"
+    }
+
+    //le pongo el onload para que solo ocurra una vez que el reader haya leido por completo la imagen
+    reader.onload = function(){
+
+        //guardo la URL permanente en el src que corresponde
+        individualGiverPhoto.src = reader.result;
+
+        //empujo un nuevo elemento al array de elementos
+        giversArray.push({
+            giverName: individualGiverName.textContent,
+            giverWish: individualGiverWish.textContent,
+            giverPhoto: individualGiverPhoto.src,
+            giverAmount: individualGiverAmount,
+            giverCode: randomCode,
+            giverMail: individualGiverEmail
         })
-
     
+        localStorage.setItem('giversArray', JSON.stringify(giversArray));
+    }
+} else {
+    
+    //empujo un nuevo elemento al array de elementos
+    giversArray.push({
+        giverName: individualGiverName.textContent,
+        giverWish: individualGiverWish.textContent,
+        giverPhoto: null,
+        giverAmount: individualGiverAmount,
+        giverCode: randomCode,
+        giverMail: individualGiverEmail
+    });
+
+    localStorage.setItem('giversArray', JSON.stringify(giversArray));
+
+}
+
+    shoeProgressAbsolute += individualGiverAmount;
+    localStorage.setItem('shoeProgressAbsolute', shoeProgressAbsolute);
+
+    shoeProgressRelative = (shoeProgressAbsolute/shoeCost)*100;
+    localStorage.setItem('shoeProgressRelative', shoeProgressRelative);
+
+    document.querySelector('#progressBar').value = shoeProgressRelative;
+    document.querySelector("#h6Progress").innerHTML = `Llevamos un progreso del ${Math.round(shoeProgressRelative,2)}%`;
+
+    lastGiverName = giversArray.at(-1).giverName;
+    lastGiverCode = giversArray.at(-1).giverCode;
+    lastGiverMail = giversArray.at(-1).giverMail;
+
+    dataForEmail = {
+        to: lastGiverMail,
+        subject: `${lastGiverName}, gracias por tu hermoso gesto!`,
+        text: `Muchas gracias por tu regalo!! Me ayuda un monton a comprarme las zapas que quieroo.
+  
+    Ahora que sos parte de este proyecto, vas a poder entrar cuando me las compre y ver fotos mias usandolas y disfrutando tu regalo.
+          
+    En caso de que quieras modificar tu deseo, nombre, foto o contribucion al proyecto, podes hacerlo buscandote en la sección de 'Givers', apretando el boton 'Edit' e ingresando tu codigo de modificacion: ${lastGiverCode}.
+          
+    Este mensaje fue enviado automaticamente, por lo que no te sientas en el compromiso de responderlo. Pero en caso de que lo hagas me voy a ocupar personalmente de leerlo (no te preocupes que no se lo muestro a la inteligencia artificial, va a ser nuestro secretito)`
+    };
+
+    fetch('http://localhost:4000/send-email',{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(dataForEmail) //Convierte dataForEmail a JSON
+    })
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+    
+
+ 
 });
+
+document.querySelector("#h6Progress").innerHTML = `Llevamos un progreso del ${Math.round(shoeProgressRelative,2)}%`;
+
+//EDIT OR DELETE GIVER
+
+document.querySelectorAll('.Edit').forEach((butt)=> {
+    butt.addEventListener('click', (butto) => {
+        console.log(giverCode)
+        userCodePrompt = prompt('Insterte su código de modificaciones');
+        if (userCodePrompt == giversArray.giverCode){
+            console.log('poner opcion para un set item')
+        } else {
+            alert('Código erroneo')
+        }
+    })
+})
+
+

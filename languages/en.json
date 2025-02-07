@@ -1,0 +1,58 @@
+{
+    "header": {
+        "section-title": "Header",
+            "hero": "Home",
+            "gift": "Gift",
+            "vision": "Vision",
+            "givers": "Givers",
+            "enjoy": "Enjoy"},
+
+        "lenguage": {
+            "button": "Select Language",
+                "spanish": "Spanish",
+                "san juanino": "Sanjuanino",
+                "english": "English",
+                "deutch": "Deutch"
+    },
+
+    "hero": {
+        "section-title": "Hero"
+    },
+
+    "gift":{
+        "section-title": "Gift",
+        "button": "Gift"
+    },
+
+    "vision":{
+        "section-title": "Martin's reason behind all of this",
+        "paragraph": "Hello family and friends,
+If you're seeing this project, it's because you care about me, and Im sharing it with you because I care about you too.
+
+The main purpose of this project is to showcase my programming knowledge as a way of practicing and involving you interactively.
+To achieve this, I found a cause that would keep me going, even when my code failed countless times. And that’s how we arrived at what I call "The Golden Goose Project."
+I combined my passion for fashion (?) and my eagerness to learn programming to make you part of and participants in this gift.
+You’ll be able to collaborate, give gifts, see special dates, enjoy moments with me through photos I’ll upload to the page, and all kinds of surprises I’ll learn to add along the way.
+
+Infinite thanks for supporting me on my journey as a programmer and as a fashion icon.
+Love you all. ❤️"
+    },
+
+    "givers":{
+        "section-title": "Givers"
+    },
+
+    "enjoy":{
+        "section-title": "Martin Post regalo y todo lo que las esta disfrutando",
+    },
+
+    "footer": {
+        "section-title": "Footer",
+        "text": "Check out how cool Golden Goose is",
+            "GG-website":"GG Website",
+            "GG-Instagram":"GG Instagram",
+            "Paris 2024": "#Paris2024",
+        "final-message":"My dream, our proyect"
+    }
+
+}

@@ -1,0 +1,54 @@
+{
+    "header": {
+        "section-title": "Header",
+            "hero": "Inicio",
+            "gift": "Regalar",
+            "vision": "Visión",
+            "givers": "Givers",
+            "enjoy": "Disfrute"},
+
+        "lenguage": {
+            "button": "Elegir Idioma",
+                "spanish": "Español",
+                "san juanino": "Sanjuanino",
+                "english": "Inglés",
+                "deutch": "Alemán"
+    },
+
+    "hero": {
+        "section-title": "Hero"
+    },
+
+    "gift":{
+        "section-title": "Gift",
+        "button": "Regalar"
+    },
+
+    "vision":{
+        "section-title": "El porque de martin de todo esto",
+        "paragraph": "Hola familia, amigos. Si estan viendo este proyecto es porque me quieren y se los mostre porque yo los quiero mucho tambien. Lo principal de este proyecto es poder plasmar mis conocimientos de programación a modo de practica y hacerlos parte de manera interactiva. 
+        Para esto encontre una causa que me hiciera seguir por mas veces que fallara mi codigo. Y asi es como llegamos a lo que llamo 'El proyecto Golden Goose'.
+        Junte mi pasion por la moda (?) y mis ganas de aprender programacion para poder hacerlos parte y participe de este regalo. 
+        Van a poder colaborar, regalar, ver fechas especiales, disfrutar con migo del uso de las mismas con fotos que vaya poniendo en la pagina y todo tipo de sorpresas que vaya aprendiendo a incorporar en la pagina.
+        Gracias infinitas por acompañarme en mi camino de programador y de icono de la modaaa.
+        Los quiero."
+    },
+
+    "givers":{
+        "section-title": "Donantes"
+    },
+
+    "enjoy":{
+        "section-title": "Martin Post regalo y todo lo que las esta disfrutando",
+    },
+
+    "footer": {
+        "section-title": "Footer",
+        "text": "Fijate lo cool que esta golden goose",
+            "GG-website":"GG Sitio Web",
+            "GG-Instagram":"GG Instagram",
+            "Paris 2024": "#Paris2024",
+        "final-message":"Mi sueño, nuestro proyecto"
+    }
+
+}
