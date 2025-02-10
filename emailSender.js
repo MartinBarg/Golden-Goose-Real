@@ -27,6 +27,12 @@ expressApp.post("/send-email", async (req, res) => {
 });
 
 //Start the server
-expressApp.listen(4000, () => {
-  console.log(`Server is running on http://localhost:4000`)
+const port = process.env.port || 4000;
+
+app.get('/', (req, res) => {
+  res.send('¡Servidor funcionando correctamente!');
+});
+
+expressApp.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`)
 });
