@@ -29,7 +29,7 @@ expressApp.post("/send-email", async (req, res) => {
 //Start the server
 const port = process.env.port || 4000;
 
-app.get('/', (req, res) => {
+expressApp.get('/', (req, res) => {
   res.send('¡Servidor funcionando correctamente!');
 });
 
