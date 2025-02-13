@@ -50,7 +50,9 @@ expressApp.post("/new-airtable-record", async (req, res)=>{
     addGiver (gName, gEmail, gAmount, gCode, gWish);
     res.status(200).send(`Giver added correctly`)
   } catch {
-    res.status(err.error).send(err.message)
+    const statusCode = error.status || 500;
+    const errorMessage = error.message || "An unexpected error occurred";
+    res.status(statusCode).send(errorMessage)
   }
 })
 
