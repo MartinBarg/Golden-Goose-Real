@@ -48,15 +48,9 @@ expressApp.post("/new-airtable-record", async (req, res)=>{
 
   try{
     addGiver (gName, gEmail, gAmount, gCode, gWish);
-    res.status(200).send(`Giver added correctly with the ID: ${res}`)
+    res.status(200).send(`Giver added correctly`)
   } catch {
     res.status(err.error).send(err.message)
-  }
-  if (err){
-    res.status(err.error).send(err.message)
-  }else{
-     addGiver (gName, gEmail, gAmount, gCode, gWish);
-    res.status(200).send(`Giver added correctly with the ID: ${res}`)
   }
 })
 
