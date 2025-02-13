@@ -11,7 +11,7 @@ const airtableHelper = require("./helpers/airtableHelper");
 
 const expressApp = express();
 
-expressApp.use(cors());
+expressApp.use(cors({ origin: "*" }));
 //Middleware
 expressApp.use(express.json());
 
