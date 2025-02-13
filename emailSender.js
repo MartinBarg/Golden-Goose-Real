@@ -7,6 +7,7 @@ const express = require("express");
 const cors = require("cors")
 
 const emailHelper = require("./helpers/emailHelper");
+const airtableHelper = require("./helpers/airtableHelper");
 
 const expressApp = express();
 
@@ -36,3 +37,63 @@ expressApp.get('/', (req, res) => {
 expressApp.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`)
 });
+
+//air Table
+expressApp.post("/new-airtable-record", async (req, res)=>{
+  var gName = req.body.giverName;
+  var gEmail = req.body.giverMail;
+  var gAmount = req.body.giverAmount;
+  var gCode = req.body.giverCode;
+  var gWish = req.body.giverWish;
+
+  try{
+    addGiver (gName, gEmail, gAmount, gCode, gWish);
+    res.status(200).send(`Giver added correctly with the ID: ${res}`)
+  } catch {
+    res.status(err.error).send(err.message)
+  }
+  if (err){
+    res.status(err.error).send(err.message)
+  }else{
+     addGiver (gName, gEmail, gAmount, gCode, gWish);
+    res.status(200).send(`Giver added correctly with the ID: ${res}`)
+  }
+})
+
+
+
+//mercado pago
+
+// const mercadoPago = require("mercadopago");
+
+// mercadoPago.configure({
+//   access_token: "APP_USR-433692830981120-010210-a50847a4885782c08915089140b44535-238002637"
+// });
+
+// async function generarLinkPago() {
+//   const preference = await mercadoPago.preferences.create({
+//     items: [
+//       {
+//         title: "Pago libre",
+//         quantity: 1,
+//         unit_price: 0, // El usuario define el monto
+//         currency_id: "ARS",
+//       },
+//     ],
+//     back_urls: {
+//       success: "https://https://marto-golden-goose.netlify.app/success",
+//       failure: "https://https://marto-golden-goose.netlify.app/failure",
+//     },
+//     auto_return: "approved"
+//   });
+//   return preference.body.init_point;
+// }
+
+//genera el link y lo muestra en la consola
+//generarLinkPago().then((url) => console.log("Paga aquí:", url));
+
+//////
+//expressApp.post("/mpwebhook", async (req, res) => {
+//  const payment = req.body
+//  console.log("llega info de mercado pago")
+//})

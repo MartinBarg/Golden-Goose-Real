@@ -251,7 +251,16 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
         .then(data => console.log(data))
         .catch(error => console.error('Error:' + error));
     
-
+    fetch('https://golden-goose-real.onrender.com/new-airtable-record',{
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json' 
+        }, 
+        body: JSON.stringify(giversArray.at(-1)) 
+    })
+    .then(response => response.text())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:' + error))
  
 });
 
