@@ -240,6 +240,8 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
     Este mensaje fue enviado automaticamente, por lo que no te sientas en el compromiso de responderlo. Pero en caso de que lo hagas me voy a ocupar personalmente de leerlo (no te preocupes que no se lo muestro a la inteligencia artificial, va a ser nuestro secretito)`
     };
 
+    dataForAirtable = 
+
     fetch('https://golden-goose-real.onrender.com/send-email',{
         method: "POST",
         headers: {
@@ -256,7 +258,7 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
         headers: { 
             'Content-Type': 'application/json' 
         }, 
-        body: JSON.stringify(giversArray.at(-1)) 
+        body: JSON.stringify(giversArray.at(-1).giverName) 
     })
     .then(response => response.text())
     .then(data => console.log(data))
