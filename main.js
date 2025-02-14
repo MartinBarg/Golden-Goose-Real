@@ -241,7 +241,7 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
     };
 
     dataForAirtable = {
-        giverName : lastGiverName
+        gName : lastGiverName
     }
 
     fetch('https://golden-goose-real.onrender.com/send-email',{
