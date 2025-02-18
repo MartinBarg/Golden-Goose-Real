@@ -137,6 +137,54 @@ deleteGiver.classList.add('Delete')
 
 };
 
+function orderDataToSend (){
+    lastGiverName = individualGiverName.textContent;
+    lastGiverCode = randomCode;
+    lastGiverMail = individualGiverEmail;
+
+    dataForEmail = {
+        to: lastGiverMail,
+        subject: `${lastGiverName}, gracias por tu hermoso gesto!`,
+        text: `Muchas gracias por tu regalo!! Me ayuda un monton a comprarme las zapas que quieroo.
+  
+    Ahora que sos parte de este proyecto, vas a poder entrar cuando me las compre y ver fotos mias usandolas y disfrutando tu regalo.
+          
+    En caso de que quieras modificar tu deseo, nombre, foto o contribucion al proyecto, podes hacerlo buscandote en la sección de 'Givers', apretando el boton 'Edit' e ingresando tu codigo de modificacion: ${lastGiverCode}.
+          
+    Este mensaje fue enviado automaticamente, por lo que no te sientas en el compromiso de responderlo. Pero en caso de que lo hagas me voy a ocupar personalmente de leerlo (no te preocupes que no se lo muestro a la inteligencia artificial, va a ser nuestro secretito)`
+    };
+
+    dataForAirtable = {
+        gName : lastGiverName
+    }
+}
+
+function sendMailMain (){
+    fetch('https://golden-goose-real.onrender.com/send-email',{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(dataForEmail) //Convierte dataForEmail a JSON
+    })
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:' + error))
+};
+
+function sendAirtableMain (){
+    fetch('https://golden-goose-real.onrender.com/new-airtable-record',{
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json' 
+        }, 
+        body: JSON.stringify(dataForAirtable) 
+    })
+    .then(response => response.text())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:' + error))
+};
+
 //mostrar los datos a llenar al clickear new giver
 document.querySelector('#new-giver').addEventListener('click', (s)=>{
     if(s.target == document.querySelector('#new-giver')){document.querySelector('#giver-form').hidden = false}
@@ -198,6 +246,10 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
         })
     
         localStorage.setItem('giversArray', JSON.stringify(giversArray));
+
+        orderDataToSend ();
+        sendMailMain ();
+        sendAirtableMain ();
     }
 } else {
     
@@ -213,6 +265,10 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
 
     localStorage.setItem('giversArray', JSON.stringify(giversArray));
 
+    orderDataToSend ();
+    sendMailMain ();
+    sendAirtableMain ();
+
 }
 
     shoeProgressAbsolute += individualGiverAmount;
@@ -223,49 +279,7 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
 
     document.querySelector('#progressBar').value = shoeProgressRelative;
     document.querySelector("#h6Progress").innerHTML = `Llevamos un progreso del ${Math.round(shoeProgressRelative,2)}%`;
-
-    lastGiverName = giversArray.at(-1).giverName;
-    lastGiverCode = giversArray.at(-1).giverCode;
-    lastGiverMail = giversArray.at(-1).giverMail;
-
-    dataForEmail = {
-        to: lastGiverMail,
-        subject: `${lastGiverName}, gracias por tu hermoso gesto!`,
-        text: `Muchas gracias por tu regalo!! Me ayuda un monton a comprarme las zapas que quieroo.
-  
-    Ahora que sos parte de este proyecto, vas a poder entrar cuando me las compre y ver fotos mias usandolas y disfrutando tu regalo.
-          
-    En caso de que quieras modificar tu deseo, nombre, foto o contribucion al proyecto, podes hacerlo buscandote en la sección de 'Givers', apretando el boton 'Edit' e ingresando tu codigo de modificacion: ${lastGiverCode}.
-          
-    Este mensaje fue enviado automaticamente, por lo que no te sientas en el compromiso de responderlo. Pero en caso de que lo hagas me voy a ocupar personalmente de leerlo (no te preocupes que no se lo muestro a la inteligencia artificial, va a ser nuestro secretito)`
-    };
-
-    dataForAirtable = {
-        gName : lastGiverName
-    }
-
-    fetch('https://golden-goose-real.onrender.com/send-email',{
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(dataForEmail) //Convierte dataForEmail a JSON
-    })
-        .then(response => response.text())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:' + error));
     
-    fetch('https://golden-goose-real.onrender.com/new-airtable-record',{
-        method: 'POST',
-        headers: { 
-            'Content-Type': 'application/json' 
-        }, 
-        body: JSON.stringify(dataForAirtable) 
-    })
-    .then(response => response.text())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:' + error))
- 
 });
 
 document.querySelector("#h6Progress").innerHTML = `Llevamos un progreso del ${Math.round(shoeProgressRelative,2)}%`;

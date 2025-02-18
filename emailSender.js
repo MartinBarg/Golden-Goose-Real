@@ -7,7 +7,7 @@ const express = require("express");
 const cors = require("cors")
 
 const emailHelper = require("./helpers/emailHelper");
-const airtableHelper = require("./helpers/airtableHelper");
+const addGiver = require("./helpers/airtableHelper");
 
 const expressApp = express();
 
@@ -43,15 +43,15 @@ expressApp.listen(port, () => {
 
 //air Table
 expressApp.post("/new-airtable-record", async (req, res)=>{
-  var gName = req.body.giverName;
+  var gName = req.body.gName;
   //var gEmail = req.body.giverMail;
   //var gAmount = req.body.giverAmount;
   //var gCode = req.body.giverCode;
   //var gWish = req.body.giverWish;
-
+ 
   try{
-    addGiver (gName);
-    res.status(200).send(`Giver added correctly`)
+    let info2 = await addGiver (gName);
+    res.status(200).send(`Giver added correctly ${info2.response}`)
   } catch (error) {
     const statusCode = error.status || 500;
     const errorMessage = error.message || "An unexpected error occurred";
