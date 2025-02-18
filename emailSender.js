@@ -44,10 +44,10 @@ expressApp.listen(port, () => {
 //air Table
 expressApp.post("/new-airtable-record", async (req, res)=>{
   var gName = req.body.gName;
-  var gMail = req.body.giverMail;
-  var gAmount = req.body.giverAmount;
-  var gCode = req.body.giverCode;
-  var gWish = req.body.giverWish;
+  var gMail = req.body.gMail;
+  var gAmount = req.body.gAmount;
+  var gCode = req.body.gCode;
+  var gWish = req.body.gWish;
  
   try{
     let recordId = await addGiver (gName, gMail, gAmount, gCode, gWish);
