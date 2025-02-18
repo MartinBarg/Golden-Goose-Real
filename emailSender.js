@@ -44,13 +44,13 @@ expressApp.listen(port, () => {
 //air Table
 expressApp.post("/new-airtable-record", async (req, res)=>{
   var gName = req.body.gName;
-  //var gEmail = req.body.giverMail;
-  //var gAmount = req.body.giverAmount;
-  //var gCode = req.body.giverCode;
-  //var gWish = req.body.giverWish;
+  var gMail = req.body.giverMail;
+  var gAmount = req.body.giverAmount;
+  var gCode = req.body.giverCode;
+  var gWish = req.body.giverWish;
  
   try{
-    let recordId = await addGiver (gName);
+    let recordId = await addGiver (gName, gMail, gAmount, gCode, gWish);
     res.status(200).send(`Giver added correctly, it ID:${recordId}`);
   } catch (error) {
     const statusCode = error.status || 500;

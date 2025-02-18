@@ -153,7 +153,11 @@ function orderDataToSend (){
     };
 
     dataForAirtable = {
-        gName : lastGiver.giverName
+        gName : lastGiver.giverName,
+        gMail : lastGiver.giverMail,
+        gAmount : lastGiver.giverAmount,
+        gcode : lastGiver.gCode,
+        gWish : lastGiver.gWish
     }
 }
 
