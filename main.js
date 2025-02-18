@@ -138,24 +138,22 @@ deleteGiver.classList.add('Delete')
 };
 
 function orderDataToSend (){
-    lastGiverName = individualGiverName.textContent;
-    lastGiverCode = randomCode;
-    lastGiverMail = individualGiverEmail;
+    let lastGiver = giversArray[giversArray.length - 1]
 
     dataForEmail = {
-        to: lastGiverMail,
-        subject: `${lastGiverName}, gracias por tu hermoso gesto!`,
+        to: lastGiver.giverMail,
+        subject: `${lastGiver.giverName}, gracias por tu hermoso gesto!`,
         text: `Muchas gracias por tu regalo!! Me ayuda un monton a comprarme las zapas que quieroo.
   
     Ahora que sos parte de este proyecto, vas a poder entrar cuando me las compre y ver fotos mias usandolas y disfrutando tu regalo.
           
-    En caso de que quieras modificar tu deseo, nombre, foto o contribucion al proyecto, podes hacerlo buscandote en la sección de 'Givers', apretando el boton 'Edit' e ingresando tu codigo de modificacion: ${lastGiverCode}.
+    En caso de que quieras modificar tu deseo, nombre, foto o contribucion al proyecto, podes hacerlo buscandote en la sección de 'Givers', apretando el boton 'Edit' e ingresando tu codigo de modificacion: ${lastGiver.giverCode}.
           
     Este mensaje fue enviado automaticamente, por lo que no te sientas en el compromiso de responderlo. Pero en caso de que lo hagas me voy a ocupar personalmente de leerlo (no te preocupes que no se lo muestro a la inteligencia artificial, va a ser nuestro secretito)`
     };
 
     dataForAirtable = {
-        gName : lastGiverName
+        gName : lastGiver.giverName
     }
 }
 
