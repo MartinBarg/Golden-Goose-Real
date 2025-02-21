@@ -156,7 +156,7 @@ function orderDataToSend (){
         "gName" : lastGiver.giverName,
         "gMail" : lastGiver.giverMail,
         "gAmount" : lastGiver.giverAmount,
-        "gcode" : lastGiver.giverCode,
+        "gCode" : lastGiver.giverCode,
         "gWish" : lastGiver.giverWish
     }
 }
