@@ -156,8 +156,8 @@ function orderDataToSend (){
         "gName" : lastGiver.giverName,
         "gMail" : lastGiver.giverMail,
         "gAmount" : lastGiver.giverAmount,
-        "gcode" : lastGiver.gCode,
-        "gWish" : lastGiver.gWish
+        "gcode" : lastGiver.giverCode,
+        "gWish" : lastGiver.giverWish
     }
 }
 
@@ -186,6 +186,7 @@ function sendAirtableMain (){
     .then(data => console.log(data))
     .catch(error => console.error('Error:' + error))
 };
+
 
 //mostrar los datos a llenar al clickear new giver
 document.querySelector('#new-giver').addEventListener('click', (s)=>{
