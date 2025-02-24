@@ -89,6 +89,8 @@ shoeCost = 875
 
 //CARGO PROGRESO DE LA ZAPATILLA
 
+
+
 if (localStorage.getItem('shoeProgressAbsolute') === null){
     shoeProgressAbsolute = 0
 } else{
@@ -136,6 +138,8 @@ deleteGiver.textContent = 'Delete Giver';
 deleteGiver.classList.add('Delete')
 
 };
+
+var giverForAirtable = [];
 
 function orderDataToSend (){
     let lastGiver = giversArray[giversArray.length - 1]
@@ -187,6 +191,27 @@ function sendAirtableMain (){
     .catch(error => console.error('Error:' + error))
 };
 
+function getAirtableData (){
+    fetch('https://golden-goose-real.onrender.com/get-airtable-records',{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        giversArray = data;
+        giversArray.forEach(g =>{
+            newIndividualGiver();
+            individualGiverName.textContent = g.giverName;
+            individualGiverWish.textContent = g.giverWish;
+           // individualGiverPhoto.src = g.giverPhoto;
+});
+    })
+    .catch(error => console.error("Error fetching Airtable Data:", error))
+};
+
+getAirtableData ();
 
 //mostrar los datos a llenar al clickear new giver
 document.querySelector('#new-giver').addEventListener('click', (s)=>{
@@ -195,17 +220,19 @@ document.querySelector('#new-giver').addEventListener('click', (s)=>{
 
 
 //mostrar en pantalla los givers que existen en el local storage
-if(localStorage.getItem('giversArray') === null){
-    giversArray = []
-} else {
-    giversArray = JSON.parse(localStorage.getItem('giversArray'));
-    giversArray.forEach(g =>{
-        newIndividualGiver();
-        individualGiverName.textContent = g.giverName;
-        individualGiverWish.textContent = g.giverWish;
-        individualGiverPhoto.src = g.giverPhoto;
-    })
-};
+//if(getAirtableData() === null){
+//    giversArray = []
+//} else {
+//    giversArray = JSON.parse(localStorage.getItem('giversArray'));
+//    giversArray.forEach(g =>{
+//        newIndividualGiver();
+//        individualGiverName.textContent = g.giverName;
+//        individualGiverWish.textContent = g.giverWish;
+//        individualGiverPhoto.src = g.giverPhoto;
+//    })
+//};
+
+
 
 //el giver apreta enviar en el formulario de new giver
 document.querySelector('#submit-giver').addEventListener('click', ()=>{

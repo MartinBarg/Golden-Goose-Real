@@ -24,4 +24,24 @@ base('Givers').create([
 });
 }
 
-module.exports = addGiver;
+var getGivers = base('Givers').select({
+  sort: [{field: "fldd72R7puhqluDks", direction: "asc"}]
+}).eachPage(function page (records, fetchNextPage){
+  records.forEach(function(record) {
+    giversArray.push({
+      giverName : record.get('fldnGBnvvbMIsrr4J'),
+      giverWish: record.get('fldKR2KWkGFTK1uEB'),
+      giverAmount: record.get('fldBLfLizlFJ7uXOg'),
+      giverCode: record.get('fldscac2Fyvv3aV6f'),
+      giverMail: record.get('fldVtOlnynVxYgF5o')
+  })
+    //    console.log('Retrieved', record.get('Name'));
+});
+fetchNextPage();
+}, 
+function done(err) {
+  if (err) { console.error(err); return; }
+});
+
+
+module.exports = {addGiver, getGivers}

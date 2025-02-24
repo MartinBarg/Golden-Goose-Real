@@ -7,7 +7,9 @@ const express = require("express");
 const cors = require("cors")
 
 const emailHelper = require("./helpers/emailHelper");
-const addGiver = require("./helpers/airtableHelper");
+const airtableHelper = require("./helpers/airtableHelper")
+const addGiver = airtableHelper.addGiver
+const getGiveres = airtableHelper.getGivers
 
 const expressApp = express();
 
@@ -59,7 +61,17 @@ expressApp.post("/new-airtable-record", async (req, res)=>{
   }
 })
 
-
+//get list
+expressApp.get("/get-airtable-records", async (req, res) => {
+  try {
+    const givers = await getGivers();
+    res.json({givers})
+  } catch (error) {
+    const statusCode = error.status || 500;
+    const errorMessage = error.message || "An unexpected error occurred";
+    res.status(statusCode).send(errorMessage)
+  }
+});
 
 //mercado pago
 
