@@ -71,6 +71,12 @@ header #main-navigation ul li a:hover {
     color: #000000;
     padding: 1px 15px;
 }
+
+.individual-giver{
+    background-color: #f0dd5f7f;
+    border: 2px solid #e0c14fbc;
+}
+
 footer {
     background: #222222;
     color: #ffffff;
