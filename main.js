@@ -43,7 +43,7 @@
 var giftButton = document.querySelector('#gift-button');
 
 giftButton.addEventListener('click',()=>{
-    if(confirm('Aceptando este cartel te redirigire a mercado pago a que puedas transferir en pesos la cifra en dolares que regalas. Es a modo simbolico, pero me permitia jugar con metodos de pago en mi pagina.')){
+    if(confirm('Aceptando este cartel te redirigire a mercado pago. Lo puse a modo simbolico para poder jugar con medios de pago en mi pagina.')){
         window.location.href = 'https://link.mercadopago.com.ar/martoslinksinmonto??back_url=https://sparkling-llama-acce6c.netlify.app/'
     }
 });
@@ -125,13 +125,13 @@ function orderDataToSend (){
     dataForEmail = {
         to: lastGiver.giverMail,
         subject: `${lastGiver.giverName}, gracias por tu hermoso gesto!`,
-        text: `Muchas gracias por tu regalo!! Me ayuda un monton a comprarme las zapas que quieroo.
+        text: `Muchas gracias por tu regalo!! Me ayuda un montón a comprarme las zapas que quierooo.
   
-    Ahora que sos parte de este proyecto, vas a poder entrar cuando me las compre y ver fotos mias usandolas y disfrutando tu regalo.
+    Ahora que sos parte de este proyecto, vas a poder entrar cuando me las compre y ver fotos mías usándolas y disfrutando tu regalo. Siguiendo el link "https://marto-golden-goose.netlify.app/#enjoy"
           
     En caso de que quieras modificar tu deseo, nombre, foto o contribucion al proyecto, podes hacerlo buscandote en la sección de 'Givers', apretando el boton 'Edit' e ingresando tu codigo de modificacion: ${lastGiver.giverCode}.
           
-    Este mensaje fue enviado automaticamente, por lo que no te sientas en el compromiso de responderlo. Pero en caso de que lo hagas me voy a ocupar personalmente de leerlo (no te preocupes que no se lo muestro a la inteligencia artificial, va a ser nuestro secretito)`
+    Este mensaje fue enviado automaticamente, por lo que no te sientas en el compromiso de responderlo. Pero en caso de que lo hagas me voy a ocupar personalmente de leerlo (no te preocupes que no se lo muestro a la inteligencia artificial)`
     };
 
     dataForAirtable = {
@@ -294,7 +294,9 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
         orderDataToSend ();
         sendMailMain ();
         sendAirtableMain ().then(()=>{
+            setTimeout(() => {
             location.reload();
+            }, 1000);
         })
     }
 } else {
@@ -314,7 +316,9 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
     orderDataToSend ();
     sendMailMain ();
     sendAirtableMain ().then(()=>{
+        setTimeout(() => {
         location.reload();
+        }, 1000);
     })
 }
 
