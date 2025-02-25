@@ -328,8 +328,8 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
 //    shoeProgressRelative = (shoeProgressAbsolute/shoeCost)*100;
 //    localStorage.setItem('shoeProgressRelative', shoeProgressRelative);
 
-    document.querySelector('#progressBar').value = shoeProgressRelative;
-    document.querySelector("#h6Progress").innerHTML = `Llevamos un progreso del ${Math.round(shoeProgressRelative,2)}%`;
+//    document.querySelector('#progressBar').value = shoeProgressRelative;
+//    document.querySelector("#h6Progress").innerHTML = `Llevamos un progreso del ${Math.round(shoeProgressRelative,2)}%`;
     
 });
 
