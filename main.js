@@ -200,7 +200,7 @@ function getAirtableData (){
     })
     .then(response => response.json())
     .then(data => {
-        giversArray = data;
+        giversArray = data.givers;
         giversArray.forEach(g =>{
             newIndividualGiver();
             individualGiverName.textContent = g.giverName;
