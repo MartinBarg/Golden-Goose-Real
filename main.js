@@ -82,32 +82,8 @@ lengButtons.forEach((button)=>{
                 })
             })
     })
-})
+});
 
-//Total de la zapatilla
-shoeCost = 875
-
-//CARGO PROGRESO DE LA ZAPATILLA
-
-shoeProgressAbsolute = 0;
-giversArray.forEach((give) => shoeProgressAbsolute += give.giverAmount);
-
-//if (localStorage.getItem('shoeProgressAbsolute') === null){
-//    shoeProgressAbsolute = 0
-//} else{
-//    shoeProgressAbsolute = Number(localStorage.getItem('shoeProgressAbsolute'))
-//}
-
-shoeProgressRelative = 0;
-shoeProgressRelative = (shoeProgressAbsolute/shoeCost)*100;
-
-//if (localStorage.getItem('shoeProgressRelative') === null){
-//   shoeProgressRelative = 0;
-//    document.querySelector('#progressBar').value = shoeProgressRelative
-//} else{
-//    shoeProgressRelative = Number(localStorage.getItem('shoeProgressRelative'));
-//    document.querySelector('#progressBar').value = shoeProgressRelative
-//}
 //NEW GIVER
 var givers = document.querySelector('#givers');
 
@@ -142,8 +118,6 @@ deleteGiver.textContent = 'Delete Giver';
 deleteGiver.classList.add('Delete')
 
 };
-
-var giverForAirtable = [];
 
 function orderDataToSend (){
     let lastGiver = giversArray[giversArray.length - 1]
@@ -216,6 +190,33 @@ function getAirtableData (){
 };
 
 getAirtableData ();
+
+
+//shoe progress
+//Total de la zapatilla
+shoeCost = 875
+
+//CARGO PROGRESO DE LA ZAPATILLA
+
+shoeProgressAbsolute = 0;
+giversArray.forEach((give) => shoeProgressAbsolute += give.giverAmount);
+
+//if (localStorage.getItem('shoeProgressAbsolute') === null){
+//    shoeProgressAbsolute = 0
+//} else{
+//    shoeProgressAbsolute = Number(localStorage.getItem('shoeProgressAbsolute'))
+//}
+
+shoeProgressRelative = 0;
+shoeProgressRelative = (shoeProgressAbsolute/shoeCost)*100;
+
+//if (localStorage.getItem('shoeProgressRelative') === null){
+//   shoeProgressRelative = 0;
+//    document.querySelector('#progressBar').value = shoeProgressRelative
+//} else{
+//    shoeProgressRelative = Number(localStorage.getItem('shoeProgressRelative'));
+//    document.querySelector('#progressBar').value = shoeProgressRelative
+//}
 
 //mostrar los datos a llenar al clickear new giver
 document.querySelector('#new-giver').addEventListener('click', (s)=>{
