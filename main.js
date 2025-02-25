@@ -179,17 +179,24 @@ function getAirtableData (){
     .then(response => response.json())
     .then(data => {
         giversArray = data.givers;
+        shoeProgressAbsolute = 0;
+
         giversArray.forEach(g =>{
             newIndividualGiver();
             individualGiverName.textContent = g.giverName;
             individualGiverWish.textContent = g.giverWish;
            // individualGiverPhoto.src = g.giverPhoto;
+           shoeProgressAbsolute += g.giverAmount;
 });
+    shoeProgressRelative = (shoeProgressAbsolute/shoeCost)*100;
+    document.querySelector('#progressBar').value = shoeProgressRelative;
+    document.querySelector("#h6Progress").innerHTML = `Llevamos un progreso del ${Math.round(shoeProgressRelative,2)}%`;
+    
     })
     .catch(error => console.error("Error fetching Airtable Data:", error))
 };
 
-giversArray = [];
+
 getAirtableData ();
 
 
@@ -288,8 +295,6 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
         sendMailMain ();
         sendAirtableMain ();
         getAirtableData ();
-
-        giversArray.forEach((give) => shoeProgressAbsolute += give.giverAmount);
     }
 } else {
     
@@ -309,8 +314,6 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
     sendMailMain ();
     sendAirtableMain ();
     getAirtableData ();
-
-    giversArray.forEach((give) => shoeProgressAbsolute += give.giverAmount);
 }
 
 //    shoeProgressAbsolute += individualGiverAmount;
@@ -323,8 +326,6 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
     document.querySelector("#h6Progress").innerHTML = `Llevamos un progreso del ${Math.round(shoeProgressRelative,2)}%`;
     
 });
-
-document.querySelector("#h6Progress").innerHTML = `Llevamos un progreso del ${Math.round(shoeProgressRelative,2)}%`;
 
 //EDIT OR DELETE GIVER
 
