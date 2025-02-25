@@ -89,21 +89,25 @@ shoeCost = 875
 
 //CARGO PROGRESO DE LA ZAPATILLA
 
+shoeProgressAbsolute = 0;
+giversArray.forEach((give) => shoeProgressAbsolute += give.giverAmount);
 
+//if (localStorage.getItem('shoeProgressAbsolute') === null){
+//    shoeProgressAbsolute = 0
+//} else{
+//    shoeProgressAbsolute = Number(localStorage.getItem('shoeProgressAbsolute'))
+//}
 
-if (localStorage.getItem('shoeProgressAbsolute') === null){
-    shoeProgressAbsolute = 0
-} else{
-    shoeProgressAbsolute = Number(localStorage.getItem('shoeProgressAbsolute'))
-}
+shoeProgressRelative = 0;
+shoeProgressRelative = (shoeProgressAbsolute/shoeCost)*100;
 
-if (localStorage.getItem('shoeProgressRelative') === null){
-    shoeProgressRelative = 0;
-    document.querySelector('#progressBar').value = shoeProgressRelative
-} else{
-    shoeProgressRelative = Number(localStorage.getItem('shoeProgressRelative'));
-    document.querySelector('#progressBar').value = shoeProgressRelative
-}
+//if (localStorage.getItem('shoeProgressRelative') === null){
+//   shoeProgressRelative = 0;
+//    document.querySelector('#progressBar').value = shoeProgressRelative
+//} else{
+//    shoeProgressRelative = Number(localStorage.getItem('shoeProgressRelative'));
+//    document.querySelector('#progressBar').value = shoeProgressRelative
+//}
 //NEW GIVER
 var givers = document.querySelector('#givers');
 
@@ -280,6 +284,9 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
         orderDataToSend ();
         sendMailMain ();
         sendAirtableMain ();
+        getAirtableData ();
+
+        giversArray.forEach((give) => shoeProgressAbsolute += give.giverAmount);
     }
 } else {
     
@@ -298,14 +305,16 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
     orderDataToSend ();
     sendMailMain ();
     sendAirtableMain ();
+    getAirtableData ();
 
+    giversArray.forEach((give) => shoeProgressAbsolute += give.giverAmount);
 }
 
-    shoeProgressAbsolute += individualGiverAmount;
-    localStorage.setItem('shoeProgressAbsolute', shoeProgressAbsolute);
+//    shoeProgressAbsolute += individualGiverAmount;
+//    localStorage.setItem('shoeProgressAbsolute', shoeProgressAbsolute);
 
-    shoeProgressRelative = (shoeProgressAbsolute/shoeCost)*100;
-    localStorage.setItem('shoeProgressRelative', shoeProgressRelative);
+//    shoeProgressRelative = (shoeProgressAbsolute/shoeCost)*100;
+//    localStorage.setItem('shoeProgressRelative', shoeProgressRelative);
 
     document.querySelector('#progressBar').value = shoeProgressRelative;
     document.querySelector("#h6Progress").innerHTML = `Llevamos un progreso del ${Math.round(shoeProgressRelative,2)}%`;
