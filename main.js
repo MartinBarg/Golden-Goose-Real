@@ -189,6 +189,7 @@ function getAirtableData (){
     .catch(error => console.error("Error fetching Airtable Data:", error))
 };
 
+giversArray = [];
 getAirtableData ();
 
 
@@ -200,6 +201,7 @@ shoeCost = 875
 
 shoeProgressAbsolute = 0;
 giversArray.forEach((give) => shoeProgressAbsolute += give.giverAmount);
+
 
 //if (localStorage.getItem('shoeProgressAbsolute') === null){
 //    shoeProgressAbsolute = 0
