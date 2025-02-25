@@ -293,8 +293,9 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
 
         orderDataToSend ();
         sendMailMain ();
-        sendAirtableMain ();
-        getAirtableData ();
+        sendAirtableMain ().then(()=>{
+            location.reload();
+        })
     }
 } else {
     
@@ -312,8 +313,9 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
 
     orderDataToSend ();
     sendMailMain ();
-    sendAirtableMain ();
-    getAirtableData ();
+    sendAirtableMain ().then(()=>{
+        location.reload();
+    })
 }
 
 //    shoeProgressAbsolute += individualGiverAmount;
