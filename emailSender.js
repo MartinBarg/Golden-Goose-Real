@@ -9,7 +9,7 @@ const cors = require("cors")
 const emailHelper = require("./helpers/emailHelper");
 const airtableHelper = require("./helpers/airtableHelper")
 const addGiver = airtableHelper.addGiver
-const getGiveres = airtableHelper.getGivers
+const getGivers = airtableHelper.getGivers
 
 const expressApp = express();
 

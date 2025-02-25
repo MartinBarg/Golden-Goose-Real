@@ -275,7 +275,7 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
             giverMail: individualGiverEmail
         })
     
-        localStorage.setItem('giversArray', JSON.stringify(giversArray));
+       // localStorage.setItem('giversArray', JSON.stringify(giversArray));
 
         orderDataToSend ();
         sendMailMain ();
@@ -293,7 +293,7 @@ document.querySelector('#submit-giver').addEventListener('click', ()=>{
         giverMail: individualGiverEmail
     });
 
-    localStorage.setItem('giversArray', JSON.stringify(giversArray));
+    //localStorage.setItem('giversArray', JSON.stringify(giversArray));
 
     orderDataToSend ();
     sendMailMain ();
