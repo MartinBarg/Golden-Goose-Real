@@ -66,6 +66,11 @@ header #main-navigation ul li a:hover {
     padding: 1px 15px;
 }
 
+#givers{
+    background: #f0dd5f7f;
+    color: #000000;
+    padding: 1px 15px;
+}
 footer {
     background: #222222;
     color: #ffffff;
