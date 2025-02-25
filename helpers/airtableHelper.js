@@ -24,24 +24,34 @@ base('Givers').create([
 });
 }
 
-var getGivers = base('Givers').select({
-  sort: [{field: "fldd72R7puhqluDks", direction: "asc"}]
+var getGivers = async () => { 
+  return new Promise ((resolve, reject) => { 
+    let giversArray = [];
+    base('Givers').select({
+  sort: [{field: "Dia de regalo", direction: "asc"}]
 }).eachPage(function page (records, fetchNextPage){
   records.forEach(function(record) {
     giversArray.push({
-      giverName : record.get('fldnGBnvvbMIsrr4J'),
-      giverWish: record.get('fldKR2KWkGFTK1uEB'),
-      giverAmount: record.get('fldBLfLizlFJ7uXOg'),
-      giverCode: record.get('fldscac2Fyvv3aV6f'),
-      giverMail: record.get('fldVtOlnynVxYgF5o')
+      giverName : record.get('Name') || "Anonimo",
+      giverWish: record.get('Wish') || "No wish provided",
+      giverAmount: record.get('Amount') || 0,
+      giverCode: record.get('Code') || "",
+      giverMail: record.get('Email') || ""
   })
     //    console.log('Retrieved', record.get('Name'));
 });
 fetchNextPage();
 }, 
-function done(err) {
-  if (err) { console.error(err); return; }
-});
+(err) => {
+  if (err) {
+    console.error("Airtable error:", err);
+    reject(err);
+  } else {
+    resolve(giversArray);
+  }
+}
+);
 
-
+  })
+}
 module.exports = {addGiver, getGivers}
