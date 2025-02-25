@@ -196,7 +196,7 @@ function getAirtableData (){
     .catch(error => console.error("Error fetching Airtable Data:", error))
 };
 
-
+giversArray = [];
 getAirtableData ();
 
 
